@@ -1,11 +1,15 @@
-xl2csv.py
+This contains two python files.
+Both read an Excel file and write a CSV file for each sheet.
+(The main work is done by Python pandas module, so you will need that installed).
 
-Reads an excel file, and for every sheet named SHEET:
+xl2csv_quick.py does that and nothing else. ("python xl2csv_quick.py excelfile")
+
+xl2csv.py has a few options and extra features:
+
+xl2csv.py reads an excel file, and for every sheet named SHEET:
  - writes a csv file SHEET.csv
  - optionally writes a TAB-separated file SHEET.tsv
    - as another option, TSV fields are truncated to 7 chars so they line up vertically.
-
-The main work is done by Python pandas module, so you will need that installed.
 
 To see options, type:
 
