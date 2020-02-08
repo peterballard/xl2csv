@@ -1,0 +1,14 @@
+xl2csv.py
+
+Reads an excel file, and for every sheet named SHEET:
+ - writes a csv file SHEET.csv
+ - writes a TAB-separated file SHEET.tsv
+
+The main work is done by Python pandas module, so you will need that installed.
+
+To see options, type:
+
+$ python xl2csv -h
+
+(c) Peter Ballard 2020
+Free to reuse and modify under terms of GPL
