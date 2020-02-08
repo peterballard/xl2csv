@@ -2,7 +2,8 @@ xl2csv.py
 
 Reads an excel file, and for every sheet named SHEET:
  - writes a csv file SHEET.csv
- - writes a TAB-separated file SHEET.tsv
+ - optionally writes a TAB-separated file SHEET.tsv
+   - as another option, TSV fields are truncated to 7 chars so they line up vertically.
 
 The main work is done by Python pandas module, so you will need that installed.
 

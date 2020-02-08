@@ -35,8 +35,8 @@ Usage:
       -f=fmt = float_format parameter to pandas to_csv method. Default is "%g".
       -n = not overwrite existing files (default is overwrite).
       -q = quiet (default is to echo some messages).
-      -t = write a TSV file.
-      -t7 = write a TSV file with fields truncated to 7 chars, so the columns line up. This overrides -t.
+      -t = write TSV files (in addition to CSV files).
+      -t7 = write TSV files with fields truncated to 7 chars, so the columns line up. This overrides -t.
       -h or -u to display this message and exit.
 """)
 
