@@ -124,13 +124,24 @@ def main():
     #  and each value is a pandas data frame
     pdict = pandas.read_excel(xlfile, sheet_name=None)
 
+    used = []
+    for sheet_name in pdict.keys():
+        used.append(sheet_name)
+
     ccount = 0
     tcount = 0
     for sheet_name in pdict.keys():
         if strip:
-            ofile = sheet_name.strip() + ".csv"
+            if sheet_name.strip() != sheet_name and sheet_name.strip() in used:
+                sys.stdout.write('Keeping sheet name as "%s" (note extra spaces), because sheet name "%s" already exists\n'
+                                 % (sheet_name, sheet_name.strip()))
+                oname = sheet_name
+            else:
+                oname = sheet_name.strip()
+                used.append(oname)
         else:
-            ofile = sheet_name + ".csv"
+            oname = sheet_name
+        ofile = oname + ".csv"
         
         if nov and os.path.exists(ofile):
             sys.stdout.write("Not overwriting %s\n" % ofile)
@@ -152,7 +163,7 @@ def main():
             tcount += csv2tsv(ofile, nov, t7)
 
         if not quiet:
-            sys.stdout.write(sheet_name + ", ")
+            sys.stdout.write(oname + ", ")
         ccount += 1
 
     if not quiet:
