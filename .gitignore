@@ -1,2 +1,3 @@
-# ignore emacs ~ files
+# ignore emacs ~ files and unused dir
 *~
+unused/*

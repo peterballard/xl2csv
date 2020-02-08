@@ -7,7 +7,7 @@ Reads an excel file, and for every sheet named SHEET:
 
 The main work is done by Python pandas module, so you will need that installed.
 
-See usage() function below.
+See usage() function below for all options.
 
 (c) Peter Ballard 2020
 Free to reuse and modify under terms of GPL
@@ -35,6 +35,7 @@ Usage:
       -f=fmt = float_format parameter to pandas to_csv method. Default is "%g".
       -n = not overwrite existing files (default is overwrite).
       -q = quiet (default is to echo some messages).
+      -s = strip leading and trailing whitespace from sheet names
       -t = write TSV files (in addition to CSV files).
       -t7 = write TSV files with fields truncated to 7 chars, so the columns line up. This overrides -t.
       -h or -u to display this message and exit.
@@ -79,6 +80,7 @@ def main():
     float_format = "%g"
     nov = 0
     quiet = 0
+    strip = 0
     tsv = 0
     t7 = 0
     xlfile = ""
@@ -93,6 +95,8 @@ def main():
                 nov = 1
             elif arg=="-q":
                 quiet = 1
+            elif arg=="-s":
+                strip = 1
             elif arg=="-t":
                 tsv = 1
             elif arg=="-t7":
@@ -123,7 +127,11 @@ def main():
     ccount = 0
     tcount = 0
     for sheet_name in pdict.keys():
-        ofile = sheet_name + ".csv"
+        if strip:
+            ofile = sheet_name.strip() + ".csv"
+        else:
+            ofile = sheet_name + ".csv"
+        
         if nov and os.path.exists(ofile):
             sys.stdout.write("Not overwriting %s\n" % ofile)
             continue
